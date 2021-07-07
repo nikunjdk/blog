@@ -5,10 +5,12 @@ import "./sidebar.css";
 
 export default function Sidebar() {
   const [cats, setCats] = useState([]);
-
+  console.log("cats: " + cats);
   useEffect(() => {
     const getCats = async () => {
-      const res = await axios.get("/categories");
+      const res = await axios.get("/api/categories");
+      console.log("res: ");
+      console.log(res);
       setCats(res.data);
     };
     getCats();
