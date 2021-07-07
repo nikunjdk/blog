@@ -8,6 +8,7 @@ const postRoute = require("./routes/posts");
 const categoryRoute = require("./routes/categories");
 const multer = require("multer");
 const path = require("path");
+const fs = require("fs");
 const PORT = process.env.PORT || 5000;
 
 dotenv.config();
@@ -19,7 +20,7 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
-    useFindAndModify: true,
+    useFindAndModify: false,
   })
   .then(console.log("Connected to MongoDB"))
   .catch((err) => console.log(err));
@@ -36,6 +37,18 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 app.post("/api/upload", upload.single("file"), (req, res) => {
   res.status(200).json("File has been uploaded");
+});
+
+app.get("/api/image/:filename", (req, res) => {
+  try {
+    if (fs.existsSync(path.join(__dirname, "images", req.params.filename))) {
+      res
+        .status(200)
+        .sendFile(path.join(__dirname, "images", req.params.filename));
+    }
+  } catch (err) {
+    res.status(401).json("No image found");
+  }
 });
 
 app.use("/api/auth", authRoute);

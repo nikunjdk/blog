@@ -5,7 +5,7 @@ import "./topbar.css";
 
 export default function TopBar() {
   const { user, dispatch } = useContext(Context);
-  const PF = "http://localhost:5000/images/";
+  const PF = "/api/image/";
 
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
@@ -28,34 +28,29 @@ export default function TopBar() {
           <li className="topListItem" onClick={handleLogout}>
             {user && "LOGOUT"}
           </li>
-          <li className="topListItem">
-            {user && (
-              <Link to="/settings" className="link">
-                SETTINGS
-              </Link>
-            )}
-          </li>
         </ul>
       </div>
       <div className="topRight">
         {user ? (
-          <span
-            style={{
-              display: "flex",
-              justifyItems: "center",
-              alignItems: "center",
-            }}
-          >
-            <img className="topImg" src={PF + user.profilePic} alt="" />{" "}
+          <Link to="/settings" className="link">
             <span
-              className="topListItem"
               style={{
-                marginLeft: "5px",
+                display: "flex",
+                justifyItems: "center",
+                alignItems: "center",
               }}
             >
-              {user.username}
+              <img className="topImg" src={PF + user.profilePic} alt="" />{" "}
+              <span
+                className="topListItem"
+                style={{
+                  marginLeft: "5px",
+                }}
+              >
+                {user.username}
+              </span>
             </span>
-          </span>
+          </Link>
         ) : (
           <ul className="topList">
             <li className="topListItem">

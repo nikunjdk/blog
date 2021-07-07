@@ -11,7 +11,7 @@ export default function Settings() {
   const [password, setPassword] = useState(user.password);
   const [success, setSuccess] = useState(false);
 
-  const PF = "http://localhost:5000/images/";
+  const PF = "/api/image/";
 
   // const handleDelete = async (e) => {
   //   dispatch({ type: "LOGOUT" });
