@@ -10,6 +10,9 @@ const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
 const PORT = process.env.PORT || 5000;
+// const seed = require("./seeds");
+
+// seed();
 
 dotenv.config();
 app.use(express.json());

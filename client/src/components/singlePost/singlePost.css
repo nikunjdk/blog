@@ -68,6 +68,8 @@
   color: #666;
   font-size: 18px;
   line-height: 25px;
+  overflow-wrap: break-word;
+  width: 100%;
 }
 
 .singlePostDesc::first-letter {

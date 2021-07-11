@@ -16,6 +16,9 @@ export default function Post({ post }) {
         </span>
       </div>
       <p className="postDesc">{post.desc}</p>
+      <Link to={`/?user=${post.username}`} className="link">
+        <span className="postSub">Author: {post.username}</span>
+      </Link>
       <div className="postCats">
         {post.categories.map((c, i) => (
           <span key={i} className="postCat">
